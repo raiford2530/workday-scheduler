@@ -98,11 +98,7 @@ $(document).ready(function () {
     //Get the value from the text area
     var eventDescription = timeBlock.val();
 
-    //If the description is blank alert the user they
-    //must enter one before saving
-    if (!eventDescription) {
-      alert("Please enter a description before saving.");
-    } else {
+    if (eventDescription) {
       //Get the corresponding hour for the description
       var eventHour = timeBlock.attr("data-hour");
       //Create an event to store the hour and description
