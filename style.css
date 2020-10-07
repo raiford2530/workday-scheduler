@@ -45,17 +45,17 @@ textarea{
   padding-right: 10px;
 }
 
-.past {
+.past, .past.form-control:focus {
   background-color: #d3d3d3;
   color: white;
 }
 
-.present {
+.present, .present.form-control:focus{
   background-color: #ff6961;
   color: white;
 }
 
-.future {
+.future, .future.form-control:focus {
   background-color: #77dd77;
   color: white;
 }
@@ -77,4 +77,5 @@ textarea{
   height: 100%;
   width: 100%; 
 }
+
 
