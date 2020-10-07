@@ -40,6 +40,9 @@ textarea{
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 .past {
@@ -69,3 +72,9 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
+.hour, textarea.form-control, .saveBtn{
+  height: 100%;
+  width: 100%; 
+}
+
