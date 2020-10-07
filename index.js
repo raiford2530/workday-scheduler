@@ -98,30 +98,28 @@ $(document).ready(function () {
     //Get the value from the text area
     var eventDescription = timeBlock.val();
 
-    if (eventDescription) {
-      //Get the corresponding hour for the description
-      var eventHour = timeBlock.attr("data-hour");
-      //Create an event to store the hour and description
-      var event = { hour: eventHour, description: eventDescription };
+    //Get the corresponding hour for the description
+    var eventHour = timeBlock.attr("data-hour");
+    //Create an event to store the hour and description
+    var event = { hour: eventHour, description: eventDescription };
 
-      //Check to see if an event already exists for the hour saved on and if so
-      //then update the description and if not then add the new event
-      var existingEvent = events.find(
-        (storedEvent) => storedEvent.hour === event.hour
-      );
-      if (existingEvent) {
-        existingEvent.description = event.description;
-      } else {
-        events.push(event);
-      }
-
-      //Create key for the current schedule
-      var key = "schedule-" + currentMoment.format("MM/DD/YY");
-      //Create a schedule object to save
-      var schedule = { date: currentMoment.format("MM/DD/YY"), events: events };
-      //Save the schedule
-      localStorage.setItem(key, JSON.stringify(schedule));
+    //Check to see if an event already exists for the hour saved on and if so
+    //then update the description and if not then add the new event
+    var existingEvent = events.find(
+      (storedEvent) => storedEvent.hour === event.hour
+    );
+    if (existingEvent) {
+      existingEvent.description = event.description;
+    } else {
+      events.push(event);
     }
+
+    //Create key for the current schedule
+    var key = "schedule-" + currentMoment.format("MM/DD/YY");
+    //Create a schedule object to save
+    var schedule = { date: currentMoment.format("MM/DD/YY"), events: events };
+    //Save the schedule
+    localStorage.setItem(key, JSON.stringify(schedule));
   }
 
   createTimeBlocks();
