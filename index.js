@@ -44,14 +44,14 @@ $(document).ready(function () {
         hours[i].format("H")
       );
       row.append(
-        '<div class="col-9 col-sm-9 col-lg-10"><textarea class="form-control description" data-hour="' +
+        '<div class="col-8 col-sm-9 col-lg-10"><textarea class="form-control description" data-hour="' +
           hours[i].format("H") +
           '">' +
           description +
           "</textarea></div>"
       );
       row.append(
-        '<div class="col-1 col-sm-1 col-lg-1"><button class="saveBtn"><i class="far fa-save"></i></button></div>'
+        '<div class="col-2 col-sm-1 col-lg-1"><button class="saveBtn"><i class="far fa-save"></i></button></div>'
       );
       $(".container").append(row);
     }
