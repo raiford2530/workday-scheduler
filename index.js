@@ -3,10 +3,10 @@ $(document).ready(function () {
   //Create and store moment to get current day and time
   var currentMoment = moment();
   var events = [];
+  //Create key for the current schedule
+  var key = "schedule-" + currentMoment.format("MM/DD/YY");
   //Get the stored schedule from local storage
-  var scheduleInStorage = localStorage.getItem(
-    "schedule-" + currentMoment.format("MM/DD/YY")
-  );
+  var scheduleInStorage = localStorage.getItem(key);
 
   //Set text to show current day and date in the #currentDay paragraph
   currentDay.text(currentMoment.format("dddd, MMMM Do"));
@@ -18,7 +18,6 @@ $(document).ready(function () {
     //Get the events for the day
     events = scheduleInStorage.events;
   } else {
-    
     scheduleInStorage = { date: currentMoment.format("MM/DD/YY"), events: [] };
   }
 
@@ -40,11 +39,16 @@ $(document).ready(function () {
           "</div></div>"
       );
 
-      var description = getEventDescription(scheduleInStorage.date, hours[i].format("H"));
+      var description = getEventDescription(
+        scheduleInStorage.date,
+        hours[i].format("H")
+      );
       row.append(
         '<div class="col-9 col-sm-9 col-lg-10"><textarea class="form-control description" data-hour="' +
           hours[i].format("H") +
-          '">' + description + '</textarea></div>'
+          '">' +
+          description +
+          "</textarea></div>"
       );
       row.append(
         '<div class="col-1 col-sm-1 col-lg-1"><button class="saveBtn"><i class="far fa-save"></i></button></div>'
@@ -77,18 +81,17 @@ $(document).ready(function () {
 
   function getEventDescription(date, hour) {
     //Get the event that was saved for the date and the hour
-    var event = events.find(event => event.hour === hour)
+    var event = events.find((event) => event.hour === hour);
     console.log(event);
     //Get the description for the event if it exists else return a blank string
     if (event && date === currentMoment.format("MM/DD/YY")) {
       return event.description;
-    }
-    else {
+    } else {
       return "";
     }
   }
 
-  function saveTimeBlock(){
+  function saveTimeBlock() {
     var btn = $(this);
     //Get the textarea from the row
     var timeBlock = btn.parent().parent().find("textarea");
@@ -116,7 +119,7 @@ $(document).ready(function () {
         events.push(event);
       }
 
-      //Create key for the current date
+      //Create key for the current schedule
       var key = "schedule-" + currentMoment.format("MM/DD/YY");
       //Create a schedule object to save
       var schedule = { date: currentMoment.format("MM/DD/YY"), events: events };
